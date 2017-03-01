@@ -17,6 +17,8 @@ app.get('/', (req, res) => {
   res.send('Hi!');
 });
 
+app.use('/api', require('./api/index').default);
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
 })
