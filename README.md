@@ -12,3 +12,9 @@ The goal is to build it lightweight and mostly un-opinionated.
 - react-router-redux
 - CSS Modules - SASS (TODO)
 - Universal rendering
+
+## Installation
+
+1. Ensure node version from `.nvmrc` is installed
+2. `npm install`
+3. `npm start`
