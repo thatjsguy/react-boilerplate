@@ -1,14 +1,14 @@
 # React Boilerplate Demo
 
-Building my own boilerplate from my experience thus far. The goal is to build it lightweight and mostly unopinionated.
+The goal is to build it lightweight and mostly un-opinionated.
 
-## Tech
+## Features
 
-- WebPack
-- Express
+- WebPack 2
+- Express 4
 - ES6
-- React (of course)
+- React
 - Redux
-- CSS Modules - SASS
-
-TODO...
+- react-router-redux
+- CSS Modules - SASS (TODO)
+- Universal rendering
