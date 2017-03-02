@@ -18,6 +18,8 @@ import { App } from './components'
 
 // View components
 import Home from './components/views/Home'
+import About from './components/views/About'
+import Contact from './components/views/Contact'
 
 const reducer = combineReducers({
   ...reducers,
@@ -36,6 +38,8 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/" component={App}>
           <IndexRoute component={Home}/>
+          <Route path="/about" component={About}/>
+          <Route path="/contact" component={Contact}/>
         </Route>
       </Router>
     </div>
