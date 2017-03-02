@@ -1,10 +1,17 @@
-import path from 'path';
+import Webpack from 'webpack'
+import path from 'path'
+
 
 module.exports = {
-  entry: './app/index.js',
+  entry: [
+    'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:8080',
+    './app/index.js'
+  ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/dist/'
   },
   module: {
     loaders: [
@@ -14,5 +21,6 @@ module.exports = {
         loader: 'babel-loader'
       }
     ]
-  }
+  },
+  plugins: [new Webpack.HotModuleReplacementPlugin()]
 }
