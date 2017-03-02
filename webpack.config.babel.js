@@ -1,6 +1,14 @@
 import Webpack from 'webpack'
 import path from 'path'
+import combineLoaders from 'webpack-combine-loaders';
 
+const cssFormat = '[name]__[local]___[hash:base64:5]';
+
+const babelLoader = {
+  test: /\.js$/,
+  exclude: /(node_modules)/,
+  loader: 'babel-loader'
+};
 
 module.exports = {
   entry: [
@@ -15,10 +23,26 @@ module.exports = {
   },
   module: {
     loaders: [
+      babelLoader,
       {
-        test: /\.js$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader'
+         test: /\.(scss|sass)$/,
+         loader: combineLoaders([
+          { loader: 'style-loader' },
+          {
+            loader: 'css-loader',
+            query: {
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          },
+          { loader: 'sass-loader' },
+          {
+            loader: 'autoprefixer-loader',
+            query: {
+              browsers:'last 2 versions'
+            }
+          }
+         ])
       }
     ]
   },
