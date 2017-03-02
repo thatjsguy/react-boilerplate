@@ -7,7 +7,7 @@ const cssFormat = '[name]__[local]___[hash:base64:5]';
 const babelLoader = {
   test: /\.js$/,
   exclude: /(node_modules)/,
-  loader: 'babel-loader'
+  use: 'babel-loader'
 };
 
 module.exports = {
@@ -22,27 +22,21 @@ module.exports = {
     publicPath: '/dist/'
   },
   module: {
-    loaders: [
+    rules: [
       babelLoader,
       {
          test: /\.(scss|sass)$/,
-         loader: combineLoaders([
-          { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
-          },
-          { loader: 'sass-loader' },
-          {
-            loader: 'autoprefixer-loader',
-            query: {
-              browsers:'last 2 versions'
-            }
-          }
-         ])
+         use: [
+           'style-loader',
+           {
+             loader: 'css-loader',
+             options: {
+               modules: true,
+               localIdentName: '[name]__[local]___[hash:base64:5]'
+             }
+           },
+           'sass-loader'
+         ]
       }
     ]
   },
