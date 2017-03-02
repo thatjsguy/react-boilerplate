@@ -5,10 +5,6 @@ import ReactDOM from 'react-dom'
 // Flux - Redux
 import { createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-// Redux dev tools
-import { createDevTools } from 'redux-devtools'
-import LogMonitor from 'redux-devtools-log-monitor'
-import DockMonitor from 'redux-devtools-dock-monitor'
 
 // Routing
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
@@ -28,15 +24,9 @@ const reducer = combineReducers({
   routing: routerReducer
 })
 
-const DevTools = createDevTools(
-  <DockMonitor toggleVisibilityKey="ctrl-h" changePositionKey="ctrl-q">
-    <LogMonitor theme="tomorrow" preserveScrollTop={false} />
-  </DockMonitor>
-)
-
 const store = createStore(
   reducer,
-  DevTools.instrument()
+  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 const history = syncHistoryWithStore(browserHistory, store)
 
