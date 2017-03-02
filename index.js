@@ -14,13 +14,15 @@ const getPort = () => {
   }
 };
 const port = getPort();
+
 app.use(express.static(path.join(__dirname, 'public'), {maxAge: '14d'}));
+app.use(express.static(path.join(__dirname, 'dist')));
+
 app.use('/api', require('./api/index').default);
+
 app.get('*', (req, res) => {
   res.sendFile(`${__dirname}/public/index.html`);
 });
-
-
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
