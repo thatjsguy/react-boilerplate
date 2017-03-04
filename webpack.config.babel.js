@@ -31,6 +31,7 @@ const styleLoader = {
      {
        loader: 'sass-loader',
        options: {
+         // these are "shortcuts" for easy importing
          includePaths: [
            require("bourbon").includePaths,
            path.resolve(__dirname, 'app/sass'),
