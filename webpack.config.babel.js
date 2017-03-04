@@ -8,7 +8,14 @@ const cssFormat = '[name]__[local]___[hash:base64:5]';
 const babelLoader = {
   test: /\.js$/,
   exclude: /(node_modules)/,
-  use: 'babel-loader'
+  use: [
+    {
+      loader: 'babel-loader',
+      options: {
+        presets: [['es2015', {modules: false}], 'react']
+      }
+    }
+  ]
 };
 const styleLoader = {
    test: /\.(scss|sass)$/,
@@ -29,14 +36,32 @@ const styleLoader = {
 
 // Plugins
 const plugins = [
-  new Webpack.HotModuleReplacementPlugin()
+  new Webpack.HotModuleReplacementPlugin(),
+  /* Production only! - Enable tree shaking: https://swizec.com/blog/using-webpack-2-production/swizec/7356
+  new Webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false,
+      screw_ie8: true,
+      conditionals: true,
+      unused: true,
+      comparisons: true,
+      sequences: true,
+      dead_code: true,
+      evaluate: true,
+      join_vars: true,
+      if_return: true
+    },
+    output: {
+      comments: false
+    }
+  })*/
 ];
 
 // Resolve
 const resolveModules = [
   'node_modules',
   path.resolve(__dirname, 'app/sass'),
-  //path.resolve(__dirname, 'bourbon/app/assets/stylesheets')
+  // path.resolve(__dirname, 'node_modules/bourbon'),
 ];
 
 // out ------->
