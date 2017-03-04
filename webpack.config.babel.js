@@ -35,7 +35,7 @@ const plugins = [
 // Resolve
 const resolveModules = [
   'node_modules',
-  path.resolve(__dirname, 'app/components/sass'),
+  path.resolve(__dirname, 'app/sass'),
   //path.resolve(__dirname, 'bourbon/app/assets/stylesheets')
 ];
 
