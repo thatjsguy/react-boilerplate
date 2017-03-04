@@ -18,7 +18,7 @@ const babelLoader = {
   ]
 };
 const styleLoader = {
-   test: /\.(scss|sass)$/,
+   test: /\.(s?css|sass)$/,
    use: [
      'style-loader',
      {
@@ -29,7 +29,13 @@ const styleLoader = {
        }
      },
      {
-       loader: 'sass-loader'
+       loader: 'sass-loader',
+       options: {
+         includePaths: [
+           require("bourbon").includePaths,
+           path.resolve(__dirname, 'app/sass'),
+         ]
+       }
      }
    ]
 };
@@ -60,8 +66,8 @@ const plugins = [
 // Resolve
 const resolveModules = [
   'node_modules',
-  path.resolve(__dirname, 'app/sass'),
-  // path.resolve(__dirname, 'node_modules/bourbon'),
+
+  // path.resolve(__dirname, 'node_modules/bourbon/app/assets/stylesheets'),
 ];
 
 // out ------->

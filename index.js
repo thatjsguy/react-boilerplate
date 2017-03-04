@@ -28,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/api', require('./api/index').default);
 
 app.get('*', (req, res) => {
-  res.sendFile(`${__dirname}/public/index.html`);
+  res.sendFile(`${__dirname}/app/index.html`);
 });
 
 app.listen(port, () => {
