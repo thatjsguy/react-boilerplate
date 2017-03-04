@@ -10,7 +10,7 @@ The goal is to build it lightweight and mostly un-opinionated.
 - React
 - Redux
 - react-router-redux
-- CSS Modules - (TODO)
+- CSS Modules
 - Universal rendering (TODO)
 
 ## Installation
