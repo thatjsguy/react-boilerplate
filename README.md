@@ -1,4 +1,4 @@
-# React Boilerplate Demo
+# React Boilerplate
 
 The goal is to build it lightweight and mostly un-opinionated.
 
