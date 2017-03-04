@@ -65,9 +65,7 @@ const plugins = [
 
 // Resolve
 const resolveModules = [
-  'node_modules',
-
-  // path.resolve(__dirname, 'node_modules/bourbon/app/assets/stylesheets'),
+  'node_modules'
 ];
 
 // out ------->
