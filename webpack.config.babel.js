@@ -1,15 +1,45 @@
-import Webpack from 'webpack'
-import path from 'path'
+import Webpack from 'webpack';
+import path from 'path';
 import combineLoaders from 'webpack-combine-loaders';
 
 const cssFormat = '[name]__[local]___[hash:base64:5]';
 
+// loaders
 const babelLoader = {
   test: /\.js$/,
   exclude: /(node_modules)/,
   use: 'babel-loader'
 };
+const styleLoader = {
+   test: /\.(scss|sass)$/,
+   use: [
+     'style-loader',
+     {
+       loader: 'css-loader',
+       options: {
+         modules: true,
+         localIdentName: '[name]__[local]___[hash:base64:5]'
+       }
+     },
+     {
+       loader: 'sass-loader'
+     }
+   ]
+};
 
+// Plugins
+const plugins = [
+  new Webpack.HotModuleReplacementPlugin()
+];
+
+// Resolve
+const resolveModules = [
+  'node_modules',
+  path.resolve(__dirname, 'app/components/sass'),
+  //path.resolve(__dirname, 'bourbon/app/assets/stylesheets')
+];
+
+// out ------->
 module.exports = {
   entry: [
     'webpack/hot/dev-server',
@@ -24,21 +54,11 @@ module.exports = {
   module: {
     rules: [
       babelLoader,
-      {
-         test: /\.(scss|sass)$/,
-         use: [
-           'style-loader',
-           {
-             loader: 'css-loader',
-             options: {
-               modules: true,
-               localIdentName: '[name]__[local]___[hash:base64:5]'
-             }
-           },
-           'sass-loader'
-         ]
-      }
+      styleLoader,
     ]
   },
-  plugins: [new Webpack.HotModuleReplacementPlugin()]
-}
+  resolve: {
+    modules: resolveModules
+  },
+  plugins,
+};
