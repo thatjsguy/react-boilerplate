@@ -3,10 +3,10 @@ import React, { Component, PropTypes } from 'react';
 import styles from './app.sass'
 
 //shared components
-import Header from '../shared/Header'
-import Footer from '../shared/Footer'
-import Nav from '../shared/Nav'
-import Body from '../shared/Body'
+import Header from '../Header'
+import Footer from '../Footer'
+import Nav from '../Nav'
+import Body from '../Body'
 
 export default class App extends Component {
   render() {

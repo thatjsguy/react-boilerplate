@@ -36,7 +36,8 @@ const styleLoader = {
          // these are "shortcuts" for easy importing
          includePaths: [
            require("bourbon").includePaths,
-           appPath('sass')
+           appPath('sass'),
+           'node_modules/reset-css'
          ]
        }
      }
