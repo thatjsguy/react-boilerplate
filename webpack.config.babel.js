@@ -4,6 +4,8 @@ import combineLoaders from 'webpack-combine-loaders';
 
 const cssFormat = '[name]__[local]___[hash:base64:5]';
 
+const appPath = (p) => path.resolve(__dirname, `app/${p}`);
+
 // loaders
 const babelLoader = {
   test: /\.js$/,
@@ -34,7 +36,7 @@ const styleLoader = {
          // these are "shortcuts" for easy importing
          includePaths: [
            require("bourbon").includePaths,
-           path.resolve(__dirname, 'app/sass'),
+           appPath('sass')
          ]
        }
      }

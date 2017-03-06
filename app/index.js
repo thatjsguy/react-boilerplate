@@ -2,46 +2,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-// Flux - Redux
-import { createStore, combineReducers } from 'redux'
+import AppRouter from './router'
+import store from './store'
+
 import { Provider } from 'react-redux'
 
-// Routing
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
-// Get the Redux reducers
-import * as reducers from './reducers'
-
-// Get the components
-import { App } from './components'
-
-// View components
-import Home from './components/views/Home'
-import About from './components/views/About'
-import Contact from './components/views/Contact'
-
-const reducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
-})
-
-const store = createStore(
-  reducer,
-  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+import { browserHistory } from 'react-router'
+import { syncHistoryWithStore } from 'react-router-redux'
 const history = syncHistoryWithStore(browserHistory, store)
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={ store }>
     <div>
-      <Router history={history}>
-        <Route path="/" component={App}>
-          <IndexRoute component={Home}/>
-          <Route path="/about" component={About}/>
-          <Route path="/contact" component={Contact}/>
-        </Route>
-      </Router>
+      <AppRouter history={ history }/>
     </div>
   </Provider>,
   document.getElementById('main')
