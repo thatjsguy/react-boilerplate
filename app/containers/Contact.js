@@ -45,7 +45,14 @@ export default class Home extends Component {
   render() {
     const fields = this.getFields();
     return (
-      <InputForm fields={ fields } submitLabel='Contact Me' onSubmit={ this.onSubmit } />
+      <div>
+        <h2>Contact Us</h2>
+        <p>Meatloaf ball tip pork loin sausage drumstick. Prosciutto picanha swine pork chop, biltong tenderloin drumstick brisket spare ribs cupim leberkas. Pancetta fatback filet mignon, tri-tip rump porchetta alcatra prosciutto corned beef ham. Capicola brisket short loin porchetta tenderloin.</p>
+        <InputForm
+          fields={ fields }
+          submitLabel='Contact Me'
+          onSubmit={ this.onSubmit } />
+      </div>
     )
   }
 }
