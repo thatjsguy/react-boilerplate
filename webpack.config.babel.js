@@ -14,7 +14,7 @@ const babelLoader = {
     {
       loader: 'babel-loader',
       options: {
-        presets: [['es2015', {modules: false}], 'react']
+        presets: [['es2015', {modules: false}], 'stage-0', 'react']
       }
     }
   ]
@@ -43,6 +43,18 @@ const styleLoader = {
      }
    ]
 };
+// const iconLoader = {
+//     test: /react-icons\/(.)*(.js)$/,
+//     use: [
+//       {
+//           test: /react-icons\/(.)*(.js)$/,
+//           loader: 'babel-loader',
+//           query: {
+//             presets: ['es2015', 'react']
+//           }
+//       }
+//     ]
+// }
 
 // Plugins
 const plugins = [
@@ -86,8 +98,9 @@ module.exports = {
   },
   module: {
     rules: [
+      // iconLoader,
       babelLoader,
-      styleLoader,
+      styleLoader
     ]
   },
   resolve: {

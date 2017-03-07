@@ -1,0 +1,26 @@
+@import vars/layout
+@import vars/colors
+
+=base_form_styles
+  input[type='text'], input[type='password']
+    display: block
+
+  input, textarea, select
+    margin-bottom: $pad*2
+    border-radius: 3px
+    border: 1px solid $jewel
+    padding: $pad
+    width: 100%
+    &:focus
+      border-color: lighten($fuschia, 20%)
+      background-color: lighten($fuschia, 38%)
+
+  textarea
+    min-height: $pad * 15
+
+  input[type='radio']
+    width: $pad*2
+    margin: $pad 3px
+
+  fieldset
+    margin: 0 0 $pad 0
