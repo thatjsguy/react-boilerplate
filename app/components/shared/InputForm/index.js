@@ -8,34 +8,42 @@ export default class InputForm extends Component {
     onSubmit: PropTypes.func,
     fields: PropTypes.arrayOf(PropTypes.object)
   }
+
   state = {
     fields: {}
   }
+
   componentWillMount() {
     const fields = {};
     const fieldProps = this.props.fields;
     for(let f in fieldProps) {
       const field = fieldProps[f];
-      fields[field.name] = null;
+      fields[field.name] = field.defaultValue || '';
     }
     this.setState({ fields });
   }
-  // https://github.com/facebook/react/issues/7778
-  // https://github.com/facebook/react/issues/6190
+
   onFieldChanged = (e) => {
     let updatedFields = this.state.fields;
     updatedFields[e.target.name] = e.target.value;
     this.setState({fields: updatedFields});
   }
+
+  onSubmitForm = (e) => {
+    this.props.onSubmit(this.state);
+    e.preventDefault();
+  }
+
   render() {
-    const { onSubmit, fields } = this.props;
+    const { fields, submitLabel } = this.props;
     const formFields = fields.map(field => {
       switch(field.type) {
         case 'text':
+        case 'email':
           return (
             <input
-              value={ this.state[field.name] }
-              key={ uniqKey(field.name) }
+              value={ this.state.fields[field.name] }
+              key={ field.name }
               type={ field.type }
               name={ field.name }
               placeholder={ field.label }
@@ -45,20 +53,19 @@ export default class InputForm extends Component {
         case 'radio':
           const radios = field.options.map(option => {
             return (
-              <fieldset className='radioOption'>
+              <fieldset key={`radioOption_${option.label}`} className='radioOption'>
                 <input
-                  value={ this.state[field.name] }
-                  key={ uniqKey(field.name) }
+                  value={ option.value }
+                  key={ `radio_${field.name}_${field.value}` }
                   type={ field.type }
                   name={ field.name }
-                  value={ option.value }
                   onChange={ this.onFieldChanged }/>
                 <label>{option.label}</label>
               </fieldset>
             )
           });
           return (
-            <div>
+            <div key='radioGroup'>
               <span className={ styles.radioLabel }>{ field.label }</span>
               { radios }
             </div>
@@ -67,10 +74,9 @@ export default class InputForm extends Component {
         case 'textarea':
           return (
             <textarea
-              value={ this.state[field.name] }
-              key={ uniqKey(field.name) }
+              value={ this.state.fields[field.name] }
+              key={field.name}
               name={ field.name }
-              placeholder={ field.label }
               onChange={ this.onFieldChanged }>
             </textarea>
           )
@@ -79,8 +85,9 @@ export default class InputForm extends Component {
     });
 
     return (
-      <form className={ styles.inputForm }>
+      <form className={ styles.inputForm } onSubmit={ this.onSubmitForm }>
         { formFields }
+        <input type='submit' value={ submitLabel } />
       </form>
     )
   }

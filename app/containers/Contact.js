@@ -3,6 +3,9 @@ import React, { Component, PropTypes } from 'react';
 import InputForm from '../components/shared/InputForm';
 
 export default class Home extends Component {
+  onSubmit = (form) => {
+    console.dir(form.fields);
+  }
   getFields = () => {
     return [
       {
@@ -16,8 +19,14 @@ export default class Home extends Component {
         label: 'your last name'
       },
       {
+        type: 'email',
+        name: 'email',
+        label: 'your email'
+      },
+      {
         type: 'radio',
-        name: 'foo',
+        name: 'donate',
+        defaultValue: 1,
         options: [{
           value: 1,
           label: 'yes'
@@ -36,7 +45,7 @@ export default class Home extends Component {
   render() {
     const fields = this.getFields();
     return (
-      <InputForm fields={ fields }/>
+      <InputForm fields={ fields } submitLabel='Contact Me' onSubmit={ this.onSubmit } />
     )
   }
 }
