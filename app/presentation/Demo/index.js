@@ -47,7 +47,9 @@ export default class Demo extends Component {
         <h2>Todo List</h2>
         <div className={ styles.demo }>
           <Tabs tabs={ this.renderTabs() } />
-          <TodoList todos={ todos.list } />
+          <div className={ styles.todoList }>
+            <TodoList todos={ todos.list } />
+          </div>
         </div>
       </div>
     )
