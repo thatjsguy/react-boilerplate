@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import InputForm from '../components/shared/InputForm';
+import InputForm from '../../components/shared/InputForm';
+
+import styles from './contact.sass';
 
 export default class Home extends Component {
   onSubmit = (form) => {
@@ -47,11 +49,13 @@ export default class Home extends Component {
     return (
       <div>
         <h2>Contact Us</h2>
-        <p>Meatloaf ball tip pork loin sausage drumstick. Prosciutto picanha swine pork chop, biltong tenderloin drumstick brisket spare ribs cupim leberkas. Pancetta fatback filet mignon, tri-tip rump porchetta alcatra prosciutto corned beef ham. Capicola brisket short loin porchetta tenderloin.</p>
-        <InputForm
-          fields={ fields }
-          submitLabel='Contact Me'
-          onSubmit={ this.onSubmit } />
+        <div className={ styles.contact }>
+          <p>Meatloaf ball tip pork loin sausage drumstick. Prosciutto picanha swine pork chop, biltong tenderloin drumstick brisket spare ribs cupim leberkas. Pancetta fatback filet mignon, tri-tip rump porchetta alcatra prosciutto corned beef ham. Capicola brisket short loin porchetta tenderloin.</p>
+          <InputForm
+            fields={ fields }
+            submitLabel='Contact Me'
+            onSubmit={ this.onSubmit } />
+        </div>
       </div>
     )
   }
