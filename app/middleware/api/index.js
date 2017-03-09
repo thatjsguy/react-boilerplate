@@ -8,7 +8,7 @@ const defaultOptions = {
 }
 
 export function callApi(endpoint, options = defaultOptions) {
-  return fetch(`${API_ROOT}${endpoint}`)
+  return fetch(`${API_ROOT}${endpoint}`, options)
     .then(response => {
       return response.json();
     })

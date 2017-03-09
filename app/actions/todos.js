@@ -1,4 +1,4 @@
-import { callApi } from '../middleware/api'
+import { getAllTodos } from '../middleware/api/todos'
 
 export const REQUEST_TODOS = 'REQUEST_ALL_TODOS';
 export const RECEIVE_TODOS = 'RECIEVE_ALL_TODOS';
@@ -22,7 +22,7 @@ function receiveTodos(json) {
 function fetchTodos(id = 'all') {
   return dispatch => {
     dispatch(requestTodos())
-    return callApi('/todos/all.json')
+    return getAllTodos()
       .then(json => dispatch(receiveTodos(json)))
   }
 }
