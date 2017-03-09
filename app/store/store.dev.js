@@ -1,7 +1,7 @@
 // Flux - Redux
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux'
-// import thunk from 'redux-thunk'
+import thunk from 'redux-thunk'
 // import createLogger from 'redux-logger'
 
 // MOve this
@@ -14,12 +14,12 @@ import * as reducers from '../reducers'
 const reducer = combineReducers({
   ...reducers,
   routing: routerReducer
-})
+});
 
 const store = createStore(
   reducer,
-  typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+  compose(applyMiddleware(thunk), typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+);
 
 // Reducer HMR
 if (module.hot) {
@@ -27,6 +27,6 @@ if (module.hot) {
     const updatedReducer = require('../reducers').default;
     store.replaceReducer(updatedReducer);
   })
-}
+};
 
 export default store;

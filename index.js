@@ -25,7 +25,7 @@ proxy.on('error', function(e) {
 app.use(express.static(path.join(__dirname, 'public'), {maxAge: '14d'}));
 app.use(express.static(path.join(__dirname, 'dist')));
 
-app.use('/api', require('./api/index').default);
+app.use('/api', require('./api/routes').default);
 
 app.get('*', (req, res) => {
   res.sendFile(`${__dirname}/app/index.html`);

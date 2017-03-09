@@ -1,0 +1,20 @@
+[
+  {
+    "id": 123456,
+    "title": "Clean up the office",
+    "description": "I need to clean the office and re-organize my PC equipment, ensuring to label each box.",
+    "complete": false
+  },
+  {
+    "id": 123457,
+    "title": "Paint the Patio",
+    "description": "The patio really needs a new coat of eggshell paint. Use a lighter gray color maybe.",
+    "complete": false
+  },
+  {
+    "id": 123458,
+    "title": "Buy Groceries",
+    "description": "We need some eggs, bacon, greens and sweet potatoes.",
+    "complete": false
+  }
+]

@@ -1,0 +1,15 @@
+@import 'vars/layout'
+@import 'vars/colors'
+@import 'mixins/index.sass'
+
+.tabs
+  border-radius: $pad * 30
+  border: 1px solid $stark
+
+.tab
+  border-right: 1px solid $stark
+  padding: 0 $pad
+  cursor: pointer
+  &:last-child
+    border-right: none
+    padding-right: 0

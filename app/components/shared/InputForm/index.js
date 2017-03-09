@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './inputform.sass'
 
-import { uniqKey } from '../../../utils/keys'
-
 export default class InputForm extends Component {
   static propTypes = {
     onSubmit: PropTypes.func,

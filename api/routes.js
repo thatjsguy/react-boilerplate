@@ -1,8 +1,8 @@
 import { Router } from 'express';
 const server = new Router();
 
-import someOtherRoutes from './someOtherRoutes';
-server.use('/someOtherRoutes', someOtherRoutes);
+import todos from './todos';
+server.use('/todos', todos);
 
 server.get('/hello', (req, res, next) => {
   res.json({hello: 'world'});
