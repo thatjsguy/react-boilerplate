@@ -3,7 +3,19 @@ import { connect } from 'react-redux';
 
 import Demo from '../presentation/Demo'
 
-function mapStateToProps(state, ownProps) {
+function filterTodos(todos, filter = '') {
+  return todos.filter(todo => {
+    if (filter != '') {
+      return (filter === 'COMPLETE') ? todo.complete : !todo.complete;
+    } else {
+      return todos;
+    }
+  })
+}
+
+function mapStateToProps(state) {
+  const { list, filterBy } = state.default.todos;
+  state.default.todos.filteredList = filterTodos(list, filterBy);
   return {
     ...state
   }

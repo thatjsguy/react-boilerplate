@@ -10,21 +10,20 @@ export default class TodoList extends Component {
       title: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       complete: PropTypes.bool
-    }))
+    })),
+    onChange: PropTypes.func
   }
 
   render() {
-    const { todos } = this.props;
+    const { todos, onChange } = this.props;
+    todos.sort((a, b) => a.id - b.id);
     const todoList = todos.map(todo => {
       return (
         <li key={ todo.id }>
-          <Todo {...todo} />
+          <Todo {...todo} onChange={ onChange } />
         </li>
       )
-    })
-    todoList.sort((a, b) => {
-      return a.complete != b.complete;
-    })
+    });
     return (
       <ul className={ styles.todoList }>
         { todoList }
